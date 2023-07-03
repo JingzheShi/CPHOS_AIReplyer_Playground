@@ -23,7 +23,7 @@ class CustomTransaction():
         self.host = '0' # input("host:")
         if self.host == str(0):
             import os
-            with open (("db_api\dbinformation.txt")) as f:
+            with open (("db_api/dbinformation.txt")) as f:
                 self.host = f.readline().strip()
                 self.port = int(f.readline().strip())
                 self.user = f.readline().strip()
