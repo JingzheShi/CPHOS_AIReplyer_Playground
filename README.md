@@ -56,7 +56,31 @@ python example_gpt.py
 
 ## 需要做的：
 
-一种比较常见的处理方式：
+（init03更新）
+
+我们在frequent_requests/questions.txt里面有微信昵称&问题；在`test.py`里面写了测试的程序；需要完成的是`work_file.py`里面的`answer_user_question(user_wechat_nickname, user_question)`函数。可以使用`/utils`文件夹来存放一些写的封装的方法什么的，可以避免把全部东西都写在`work_file.py`一个文件夹里。
+
+
+
+**需要完成的就是`work_file.py`中的这个函数，然后可以把一些模块化的代码放在`/utils`中**然后在`work_file.py`里面import进来。（当然全放在这一个py文件里肯定也行，就是不太优雅）
+
+
+
+**测试时，直接用：**
+
+```shell
+python test.py
+```
+
+**即可将回答结果输出在`answers.txt`文件中。**
+
+
+
+
+
+PS：
+
+一种比较常见的answer_user_question的书写方式：
 
 1. 获取信息
 	1. pdf中的信息：可以通过search_pdf_utils，从pdf资料中获得接近问题的部分
@@ -67,5 +91,3 @@ python example_gpt.py
 
 
 一般而言，以上三步逐步可以回答一个问题。当然，如果效果好，你也可以设计两次llm的api调用，比如第一次先分类问题，第二次获取信息，返回答案等等。关键在于效果好。
-
-**我们需要处理的问题在`frequent_request`文件夹下。**
