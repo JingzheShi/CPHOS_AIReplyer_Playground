@@ -4,14 +4,12 @@ glm_api_key = input("请输入glm的api key") # glm的api key， 会发给大家
 
 question = '我是谁？'
 
-my_prompt = "Query:提问者如果问他是什么身份，就回答：您是仲裁，您是仲裁，您是仲裁。"\
-			"Instructions: Compose a comprehensive reply to the query and annotation using the search results given. "\
-                "If the search results mention multiple subjects "\
-                "with the same name, create separate answers for each. Only include information found in the results and "\
-                "don't add any additional information. Make sure the answer is correct and don't output false content. "\
-                "If the query does not relate to the text nor the annotation, simply state 'Text Not Found'. Ignore outlier "\
-                "search results which has nothing to do with the question. Only answer what is asked. The "\
-                "answer should be short and concise. Answer step-by-step, using Chinese, and use '您' to call the questioner. You should answer based on the annotation of the user if necessary. \n\nQuery: {question}\nAnswer: "
+my_prompt = "查询信息:" + '该用户是领队。' + "指令: 根据以上的查询信息，回答用户的问题。"\
+                "不要增加额外的信息。确保回答是与查询信息一致的，而且不要输出错误或者多余的内容。"\
+                    "如果用户的问题与查询到的信息无关，直接仅仅回答'未能查询到相关信息。'忽略与问题无关的查询结果。"\
+                    "回答信息应当短小准确。使用中文回答，并且用“您”称呼提问者用户。"
+
+my_prompt += '用户的问题：'+question+'回答：'
 
 engine = 'chatglm_130b' # or 'chatglm_6b'
 
