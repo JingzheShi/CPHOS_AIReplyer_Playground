@@ -4,17 +4,17 @@ import fitz
 # import re
 import numpy as np
 import tensorflow_hub as hub
+import tensorflow_text
 import gradio as gr
 import os
 import regex as re
 from sklearn.neighbors import NearestNeighbors
 class SemanticSearch:
     def __init__(self):
-        self.use = hub.load('https://tfhub.dev/google/universal-sentence-encoder/4')
+        self.use = hub.load("https://tfhub.dev/google/universal-sentence-encoder-multilingual/3")
         self.fitted = False
     
-    
-    def fit(self, data, batch=800, n_neighbors=4):
+    def fit(self, data, batch=600, n_neighbors=4):
         self.data = data
         self.embeddings = self.get_text_embedding(data, batch=batch)
         n_neighbors = min(n_neighbors, len(self.embeddings))
@@ -33,7 +33,7 @@ class SemanticSearch:
             return neighbors
     
     
-    def get_text_embedding(self, texts, batch=800):
+    def get_text_embedding(self, texts, batch=600):
         embeddings = []
         for i in range(0, len(texts), batch):
             text_batch = texts[i:(i+batch)]
@@ -64,7 +64,7 @@ def pdf_to_text(path, start_page=1, end_page=None):
 
     doc.close()
     return text_list
-def text_to_chunks(texts, word_length=60, start_page=1):
+def text_to_chunks(texts, word_length=40, start_page=1):
     text_toks = [t.split(' ') for t in texts]
     page_nums = []
     chunks = []
