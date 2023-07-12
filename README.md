@@ -1,4 +1,6 @@
-使用前请先安装requirements.txt中记录的包。然后可以使用glm_utils以及gpt_utils中定义的函数来调用glm、gpt；同时，使用search_pdf_utils.py中定义的函数来调用语言模型，可以获取指定pdf中与问题语义相近的部分。这一部分pdf语义匹配的代码来自于chatpdf。
+使用的python版本为3.8.0。推荐使用conda进行包与环境的管理。
+
+使用前，请先安装对应版本的python，随后安装requirements.txt中记录的包。然后可以使用glm_utils以及gpt_utils中定义的函数来调用glm、gpt；同时，使用search_pdf_utils.py中定义的函数来调用语言模型，可以获取指定pdf中与问题语义相近的部分。这一部分pdf语义匹配的代码来自于chatpdf。
 
 注意，我们使用了tensorflow==2.11.0，这一版本的tf已经不再支持windows调用gpu。理论上，用tensorflow==2.10.0也是可以的而且支持调用windowsgpu。但为什么我这里写了2.11.0呢？因为cpu调用虽然慢但是跑得通，我这里用tf=2.10.0会有一点点小问题没法用gpu跑，所以干脆就写了2.11.0。如果大家用2.10.0+gpu跑的通了，请和我说一下然后我就改成2.10.0，毕竟用gpu跑神经网络会快很多。
 
