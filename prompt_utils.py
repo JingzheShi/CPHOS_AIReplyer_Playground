@@ -28,7 +28,6 @@ def useLLM(prompt,model): #model can be gpt or glm.
         return get_answer_from_glm('76ac5e2039ac8a8da4bd924957e03b20.kJAQi8ptu0ynObZr',prompt,'chatglm_130b')
     else:
         print('MODError. The engine should be glm or gpt.')
-        sys.exit(1)
 
 #This class is used to generate hints in the prompt.
 class hint:
@@ -40,23 +39,17 @@ class hint:
     #This method is used to search hint in pdf saved in references.dic.
     def pdf(self,type,question): #type can be an element in prob_list; question is the key word.
         recommender = SemanticSearch()
+        judge = False
         for name in self.prob_list:
-            if type == name:
-                load_recommender(recommender,self.prob_list[name][0])
+            if name == type:
+                load_recommender(recommender,self.prob[name][0])
                 result_list = recommender(question)
-            else:
-                print('TYPError. The type should be in:\n')
-                for name in self.prob_list:
-                    print('{} '.format(name))
-                sys.exit(1)
+                judge = True
+        if judge == False:
+            print('TYPError. The type should be in:\n')
+            for name in self.prob_list:
+                print('{} '.format(name))
+
         hint_str = '\n|||\n'.join(result_list)
         hint_str = '以下一些是参考材料：\n' + hint_str.replace('|||','以下一些是参考材料：')
         return hint_str
-    
-    
-    
-
-            
-            
-        
-

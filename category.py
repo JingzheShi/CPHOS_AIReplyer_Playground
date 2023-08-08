@@ -55,5 +55,5 @@ def test_cate():
     for name in test.prob_list:
         for num in range(1,len(test.prob[name])):
             print(cate(test.prob[name][num]))
-test_cate()
+print(cate('原神，启动！'))
 
