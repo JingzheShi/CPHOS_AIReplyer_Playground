@@ -2,7 +2,7 @@ from gpt_utils import get_answer_from_gpt
 from glm_utils import get_answer_from_glm
 from search_pdf_utils import SemanticSearch, load_recommender
 import sys
-
+#load the problem base
 prob = {
         '身份信息录入问题':['references/身份变动问题.pdf','为什么老师审核没有通过？','怎么添加副领队？','怎么在系统中添加学生信息？','发现学生信息显示不正确？'],
         '考试进行中的问题':['references/试题传输问题.pdf','试卷解压不了？','时间节点过了能否上传试卷？','我该怎么上传试卷？','试卷传错了怎么重新上传？','我们没赶上交卷，能再开一下通道吗？','请问能提前下发试卷吗？'],
@@ -20,8 +20,8 @@ prob_list = []
 for name, address in prob.items():
     prob_list.append(name)
 
-
-def useLLM(prompt,model):
+#This function is used to employ the LLM.
+def useLLM(prompt,model): #model can be gpt or glm.
     if model == 'gpt':
         return get_answer_from_gpt('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',prompt,'gpt-3.5-turbo')
     elif model == 'glm':
@@ -30,13 +30,15 @@ def useLLM(prompt,model):
         print('MODError. The engine should be glm or gpt.')
         sys.exit(1)
 
+#This class is used to generate hints in the prompt.
 class hint:
     def __init__(self,prob=prob,profile=profile,prob_list = prob_list):
         self.prob = prob
         self.profile = profile
         self.prob_list = prob_list
     
-    def pdf(self,type,question):
+    #This method is used to search hint in pdf saved in references.dic.
+    def pdf(self,type,question): #type can be an element in prob_list; question is the key word.
         recommender = SemanticSearch()
         for name in self.prob_list:
             if type == name:
